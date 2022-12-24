@@ -12,7 +12,6 @@ BACKUP_SCHEDULE = int(input("How often in minutes would you like to backup your 
 SOURCE = input("Enter the source directory path (exemple: c:/Users/ian/source): ")
 REPLICA = input("Enter the replica directory path (exemple: c:/Users/ian/replica): ")
 LOG = input("Enter the log directory path (exemple: c:/Users/ian/log): ")
-LOG_INFOS = f"Log for the {dt.now().strftime('%d/%m/%Y')} at {dt.now().strftime('%H:%M:%S')} \n"
 
 #Verify if the directories inputed by the user exist, if not, create them.
 if not os.path.exists(SOURCE):
@@ -39,7 +38,9 @@ def compute_md5(file_name):
 
 def backup_script():
     #Define my constant as global to be able to use them in my function
-    global SOURCE, REPLICA, LOG, LOG_INFOS
+    global SOURCE, REPLICA, LOG
+    
+    LOG_INFOS = f"Log for the {dt.now().strftime('%d/%m/%Y')} at {dt.now().strftime('%H:%M:%S')} \n"
 
     #Verify if the directories inputed by the user exist, if not, create them.
     if not os.path.exists(SOURCE):
@@ -173,7 +174,7 @@ def backup_script():
         LOG_INFOS += f"""{dt.now().strftime('%d/%m/%Y')} at {dt.now().strftime('%H:%M:%S')}: The file {element["filename"]} was removed from {REPLICA + "/" + element['folder']}.\n"""
 
     LOG_INFOS += f"""{dt.now().strftime('%d/%m/%Y')} at {dt.now().strftime('%H:%M:%S')}: End of log infos.\n"""
-    
+
     print(LOG_INFOS)
 
     with open(log_file_path, 'w+') as f:
