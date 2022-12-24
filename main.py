@@ -173,6 +173,8 @@ def backup_script():
         LOG_INFOS += f"""{dt.now().strftime('%d/%m/%Y')} at {dt.now().strftime('%H:%M:%S')}: The file {element["filename"]} was removed from {REPLICA + "/" + element['folder']}.\n"""
 
     LOG_INFOS += f"""{dt.now().strftime('%d/%m/%Y')} at {dt.now().strftime('%H:%M:%S')}: End of log infos.\n"""
+    
+    print(LOG_INFOS)
 
     with open(log_file_path, 'w+') as f:
         f.write(LOG_INFOS)
