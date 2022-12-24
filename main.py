@@ -179,6 +179,7 @@ def backup_script():
     with open(log_file_path, 'w+') as f:
         f.write(LOG_INFOS)
 
+backup_script()
 schedule.every(BACKUP_SCHEDULE).minutes.do(backup_script)
 
 # Loop so that the scheduling task keeps on running all time.
